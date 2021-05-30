@@ -148,14 +148,14 @@ namespace DartCore.UI
                         Debug.LogError("Tooltip Canvas has an unknown child");
                 }
 
-                var obj = Instantiate(Resources.Load<GameObject>("Tooltip")) as GameObject;
-                obj.name = "Tooltip";
-                instance = obj.GetComponent<Tooltip>();
-
                 var canvas = Instantiate(Resources.Load<GameObject>("TooltipCanvas")) as GameObject;
                 canvas.name = "Tooltip Canvas";
-                instance.transform.SetParent(canvas.transform, false);
                 canvas.GetComponent<Canvas>().sortingOrder = tooltipCanvasSortOrder;
+                
+                var obj = Instantiate(Resources.Load<GameObject>("Tooltip"),
+                    canvas.transform, false);
+                obj.name = "Tooltip";
+                instance = obj.GetComponent<Tooltip>();
             }
         }
 
