@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 9186037388270121200}
   - component: {fileID: 9186037388270121214}
   - component: {fileID: 9186037388270121215}
-  - component: {fileID: 1368139378272836039}
+  - component: {fileID: 1410401542453765371}
   m_Layer: 5
   m_Name: Switch
   m_TagString: Untagged
@@ -319,16 +319,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
---- !u!114 &1368139378272836039
+--- !u!114 &1410401542453765371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9186037388270121201}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89ef034b38afd241bf4936798953367, type: 3}
+  m_Script: {fileID: 11500000, guid: a417eeb759cbb4848850554a06b50aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 0
@@ -337,8 +337,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedColor: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
-  disabledColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+  highlightedColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+  disabledColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
   colorTransitionSpeed: 8
   fillTransitionSpeed: 8
   fillColor: {r: 1, g: 0, b: 0, a: 1}
