@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6616411752994343214}
   - component: {fileID: 6616411752994343209}
   - component: {fileID: 6616411752994343208}
-  - component: {fileID: 6616411752994343215}
+  - component: {fileID: 5544033271646140344}
   m_Layer: 5
   m_Name: TogglePlus
   m_TagString: Untagged
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.99999994, g: 0.99999994, b: 0.99999994, a: 0.99999994}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -77,37 +77,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6616411752994343215
+--- !u!114 &5544033271646140344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6616411752994343213}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c71a737697e4a640a1215b43ba23ac1, type: 3}
+  m_Script: {fileID: 11500000, guid: 00381a412d30ce34fb8a786d09c9d6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOn: 0
+  isOn: 1
   isInteractive: 1
   OnToggle:
     m_PersistentCalls:
       m_Calls: []
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedColor: {r: 0.8627451, g: 0.8666667, b: 0.88235295, a: 1}
-  disabledColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+  highlightedColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+  disabledColor: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
   colorTransitionSpeed: 8
-  fillTransitionSpeed: 15
+  fillTransitionSpeed: 8
   fillColor: {r: 1, g: 0, b: 0, a: 1}
   animType: 0
   fillScale: 0.8
   toolTip: 
   localizeTooltip: 0
-  tooltipTextColor: {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 1}
-  tooltipBgColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  tooltipTextColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  tooltipBgColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
   highlightedClip: {fileID: 0}
-  pressedClip: {fileID: 8300000, guid: bbd23a60bf08131449afda7aa305b143, type: 3}
+  pressedClip: {fileID: 0}
   mixerGroup: {fileID: 0}
   volume: 0.2
 --- !u!1 &6616411753066964832
@@ -138,7 +138,7 @@ RectTransform:
   m_GameObject: {fileID: 6616411753066964832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0}
   m_Children:
   - {fileID: 6616411753512125443}
   m_Father: {fileID: 6616411752994343214}
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

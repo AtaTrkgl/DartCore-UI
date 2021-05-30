@@ -1,0 +1,18 @@
+{
+    "name": "DartCore.UI.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:697df148c8f8ead4f8fa9c4aa617a994",
+        "GUID:152f02d019eb29d44afdb93cc35e655f",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

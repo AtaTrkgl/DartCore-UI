@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5069603362123131827}
   - component: {fileID: 269706859193615144}
   - component: {fileID: 8053567394674387891}
-  - component: {fileID: 7328784484789100971}
+  - component: {fileID: 7510243985023368346}
   m_Layer: 5
   m_Name: DraggableWindowContainer
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7328784484789100971
+--- !u!114 &7510243985023368346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,11 +86,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5494966805780001219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10eb36f38978a5a47961fad1b9c06c01, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c57c1920d7565a479301784c6e1b870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  padding: 7
-  followSpeed: 8
+  padding: 0
+  followSpeed: 12
 --- !u!1 &8414270943187900597
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,8 +101,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6572983598859756708}
   - component: {fileID: 6047718732497630301}
-  - component: {fileID: 8917852516786584645}
   - component: {fileID: 4842116531373026995}
+  - component: {fileID: 5647077220667037880}
   m_Layer: 5
   m_Name: DraggableWindow
   m_TagString: Untagged
@@ -137,19 +137,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8414270943187900597}
   m_CullTransparentMesh: 0
---- !u!114 &8917852516786584645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8414270943187900597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bba6172b42fd17343aebfc0be014b8b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCursorOn: 0
 --- !u!114 &4842116531373026995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,3 +167,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5647077220667037880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8414270943187900597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a191fafe96f14e24694110d8a7d5b307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCursorOn: 0

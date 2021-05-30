@@ -113,7 +113,8 @@ namespace DartCore.UI
 #if UNITY_EDITOR
             if (Application.isEditor && !Application.isPlaying)
             {
-                bgImage.color = bgColor;
+                if (bgImage)
+                    bgImage.color = bgColor;
                 filler.color = fillerColor;
                 mask.fillAmount = (current - min) / (max - min);
             }
@@ -124,7 +125,8 @@ namespace DartCore.UI
             if (hasBoundries)
                 current = Mathf.Clamp(current, min, max);
 
-            bgImage.color = Color.Lerp(bgImage.color, bgColor, fillSpeed * Time.unscaledDeltaTime);
+            if (bgImage)
+                bgImage.color = Color.Lerp(bgImage.color, bgColor, fillSpeed * Time.unscaledDeltaTime);
             GetCurrentFill();
             if (isRadial)
             {

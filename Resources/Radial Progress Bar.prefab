@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c62d7432b5c0fca4a9e83bd1f03ce998, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 292369a0546685942aa6a14cda0a541d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5
+  m_PixelsPerUnitMultiplier: 2.49
 --- !u!114 &6754473931668878424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +193,7 @@ RectTransform:
   m_GameObject: {fileID: 2746614633120336571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.874, y: 0.874, z: 0}
+  m_LocalScale: {x: 0.434, y: 0.434, z: 0}
   m_Children:
   - {fileID: 5050833223599161169}
   m_Father: {fileID: 5020935756498328771}
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.77894735
+  m_FillAmount: 0.585
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -492,7 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5020935756498328771}
   - component: {fileID: 4018480307120227}
-  - component: {fileID: 8310688322565582278}
+  - component: {fileID: 1752473139768874783}
   m_Layer: 5
   m_Name: Radial Progress Bar
   m_TagString: Untagged
@@ -529,7 +529,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8278623314075870526}
   m_CullTransparentMesh: 0
---- !u!114 &8310688322565582278
+--- !u!114 &1752473139768874783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -538,19 +538,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 8278623314075870526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f68250b9c4c354998d6f05714fa9e6, type: 3}
+  m_Script: {fileID: 11500000, guid: c9bb11692f3eba34db0759093452be3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hasBoundries: 1
   min: 0
-  max: 76
-  current: 59.2
+  max: 1
+  current: 0.585
   fillSpeed: 8
   bgColor: {r: 1, g: 1, b: 1, a: 1}
   fillerColor: {r: 1, g: 0, b: 0, a: 1}
   isRadial: 1
-  innerRadius: 0.874
-  innerCircleIcon: {fileID: 21300000, guid: c62d7432b5c0fca4a9e83bd1f03ce998, type: 3}
+  innerRadius: 0.434
+  innerCircleIcon: {fileID: 21300000, guid: 292369a0546685942aa6a14cda0a541d, type: 3}
   innerCircleIconColor: {r: 1, g: 1, b: 1, a: 1}
-  innerCircleColor: {r: 1, g: 1, b: 1, a: 0}
-  outerCircleRadius: 5
+  innerCircleColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+  outerCircleRadius: 2.49

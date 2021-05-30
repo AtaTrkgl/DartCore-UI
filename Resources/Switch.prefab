@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.18867925, g: 0.754717, b: 0.3282788, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8039216, g: 0.8039216, b: 0.8039216, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 9186037388270121200}
   - component: {fileID: 9186037388270121214}
   - component: {fileID: 9186037388270121215}
-  - component: {fileID: 9186037388270121213}
+  - component: {fileID: 1368139378272836039}
   m_Layer: 5
   m_Name: Switch
   m_TagString: Untagged
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 8
---- !u!114 &9186037388270121213
+--- !u!114 &1368139378272836039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9186037388270121201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a417eeb759cbb4848850554a06b50aa2, type: 3}
+  m_Script: {fileID: 11500000, guid: f89ef034b38afd241bf4936798953367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 0
@@ -336,13 +336,12 @@ MonoBehaviour:
   OnToggle:
     m_PersistentCalls:
       m_Calls: []
-  normalColor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
-  highlightedColor: {r: 0.45545566, g: 0.73394865, b: 0.8396226, a: 1}
-  disabledColor: {r: 0, g: 0, b: 0, a: 0}
-  transitionSpeed: 0.3
-  fillTransitionSpeed: 0.1
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  highlightedColor: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
+  disabledColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+  colorTransitionSpeed: 8
+  fillTransitionSpeed: 8
   fillColor: {r: 1, g: 0, b: 0, a: 1}
-  colorTransitionDuration: 0.1
   animType: 0
   fillScale: 0.8
   toolTip: 
@@ -350,11 +349,11 @@ MonoBehaviour:
   tooltipTextColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   tooltipBgColor: {r: 0.85, g: 0.85, b: 0.85, a: 1}
   highlightedClip: {fileID: 0}
-  pressedClip: {fileID: 8300000, guid: bbd23a60bf08131449afda7aa305b143, type: 3}
+  pressedClip: {fileID: 0}
   mixerGroup: {fileID: 0}
   volume: 0.2
-  bgColorOn: {r: 0.8039216, g: 0.8039216, b: 0.8039216, a: 1}
-  bgColorOff: {r: 0.18867925, g: 0.754717, b: 0.3282788, a: 1}
+  bgColorOn: {r: 0, g: 1, b: 0, a: 1}
+  bgColorOff: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &9186037388596950844
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.549744, y: 0}
+  m_AnchoredPosition: {x: -24.549988, y: 0}
   m_SizeDelta: {x: 49.9, y: 48.793}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9186037388596950841
