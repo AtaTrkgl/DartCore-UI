@@ -30,8 +30,12 @@ namespace DartCore.UI
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(serializedObject.FindProperty("bgColor"), new GUIContent("Background Color"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("fillerColor"), new GUIContent("Filler Color"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("fillSpeed"),
-                new GUIContent("Filling Speed"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("instantFill"),
+                new GUIContent("Instant Fill"));
+
+            if (!serializedObject.FindProperty("instantFill").boolValue)
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("fillSpeed"),
+                    new GUIContent("Filling Speed"));
 
             EditorGUILayout.Separator();
 

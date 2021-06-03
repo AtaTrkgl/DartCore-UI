@@ -69,6 +69,7 @@ namespace DartCore.UI
         public float max = 1;
         public float current = 0;
         [FormerlySerializedAs("fillTime")] [Range(1f, 20f)] public float fillSpeed = 8f;
+        [Tooltip("If set to true, fillSpeed will be ignored.")] public bool instantFill = false;
         public Color bgColor = Color.white;
         public Color fillerColor = Color.red;
         public bool isRadial;
@@ -142,7 +143,12 @@ namespace DartCore.UI
 
             var desiredFillAmount = currentOffset / maxOffset;
             if (mask)
-                mask.fillAmount = Mathf.Lerp(mask.fillAmount, desiredFillAmount, fillSpeed * Time.unscaledDeltaTime);
+            {
+                if (!instantFill)   
+                    mask.fillAmount = Mathf.Lerp(mask.fillAmount, desiredFillAmount, fillSpeed * Time.unscaledDeltaTime);
+                else
+                    mask.fillAmount = desiredFillAmount;
+            }
 
             filler.color = Color.Lerp(filler.color, fillerColor, fillSpeed * Time.unscaledDeltaTime);
         }

@@ -10,6 +10,7 @@ namespace DartCore.UI
     [HelpURL("https://github.com/AtaTrkgl/Unity-DartCore/wiki/DartCore.UI#5-tooltip")]
     public class Tooltip : MonoBehaviour
     {
+    	private static TMP_FontAsset tooltipFont;
         public static Tooltip instance;
         public static float screenEdgePadding = 10f;
         public static int tooltipCanvasSortOrder = 100;
@@ -51,6 +52,11 @@ namespace DartCore.UI
             FollowCursor();
         }
 
+        public static void SetTooltipFont(TMP_FontAsset desiredFont)
+        {
+        	tooltipFont = desiredFont;
+        }
+
         private void UpdateTextSize()
         {
             var bgSize = new Vector2(text.preferredWidth, text.preferredHeight);
@@ -80,6 +86,9 @@ namespace DartCore.UI
             {
                 text.color = textColor;
                 text.text = StringUtilities.IncreaseLinesIfNecessary(localizeText ? Localizator.GetString(tooltipString) : tooltipString, maxLineLength);
+            	
+            	if (tooltipFont != null)
+            		text.font = tooltipFont;
             }
         }
 
