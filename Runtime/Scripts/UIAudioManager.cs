@@ -5,7 +5,7 @@ namespace DartCore.UI
 {
     public class UIAudioManager : MonoBehaviour
     {
-        public static void PlayOneShotAudio(AudioClip clip, float volume, AudioMixerGroup mixerGroup)
+        public static AudioSource PlayOneShotAudio(AudioClip clip, float volume, AudioMixerGroup mixerGroup)
         {
             if (clip)
             {
@@ -20,7 +20,11 @@ namespace DartCore.UI
 
                 audioSource.Play();
                 Destroy(obj, clip.length);
+
+                return audioSource;
             }
+
+            return null;
         }
     }
 }
