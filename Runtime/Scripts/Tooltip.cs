@@ -59,7 +59,7 @@ namespace DartCore.UI
             if (followCursor)
                 FollowCursor();
             else
-                rect.localPosition = posOverride;
+                rect.position = posOverride;
         }
 
         public static void SetTooltipFont(TMP_FontAsset desiredFont)

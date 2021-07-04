@@ -19,8 +19,7 @@ namespace DartCore.UI
 
         [Header("Selection")]
         public bool displayOnSelection = false;
-        [Range(-1f, 1f)] public float selectionTooltipPosX;
-        [Range(-1f, 1f)] public float selectionTooltipPosY;
+        public RectTransform selectionDisplayPosition;
         
         private void Display(Vector2 positionOverride)
         {
@@ -48,15 +47,7 @@ namespace DartCore.UI
         {
             if (!displayOnSelection) return;
 
-            Display(GetToolTipPosOverride());
-        }
-
-        private Vector2 GetToolTipPosOverride()
-        {
-            var rect = GetComponent<RectTransform>();
-            var offset = new Vector2(selectionTooltipPosX, selectionTooltipPosY) * rect.sizeDelta * .5f;
-
-            return rect.anchoredPosition + offset;
+            Display(selectionDisplayPosition.position);
         }
 
         public void OnDeselect(BaseEventData eventData)
