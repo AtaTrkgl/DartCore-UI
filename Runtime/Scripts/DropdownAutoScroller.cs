@@ -10,6 +10,8 @@ namespace DartCore.UI
     [RequireComponent(typeof(TMP_Dropdown))]
     public class DropdownAutoScroller : MonoBehaviour
     {
+        public bool isActive = true;
+        
         private EventSystem eventSystem;
         private GameObject lastSelection;
         
@@ -34,6 +36,8 @@ namespace DartCore.UI
 
         private void Update()
         {
+            if (!isActive) return;
+            
             if (currentContent)
             {
                 var currentHeight = Mathf.Lerp(currentContent.anchoredPosition.y, desiredHeight, 

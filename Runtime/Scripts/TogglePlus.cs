@@ -12,7 +12,7 @@ using UnityEditor;
 namespace DartCore.UI
 {
     [ExecuteInEditMode, HelpURL("https://github.com/AtaTrkgl/Unity-DartCore/wiki/DartCore.UI#2-toggleplus")]
-    public class TogglePlus : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+    public class TogglePlus : Selectable, ISubmitHandler
     {
         #region Unity Editor
 
@@ -43,16 +43,9 @@ namespace DartCore.UI
         #endregion
 
         public bool isOn = false;
-        public bool isInteractive = true;
         protected bool wasInteractive = true;
 
-        [SerializeField] private UnityEvent OnToggle;
-
-        [Header("Colors")] public Color normalColor;
-        public Color highlightedColor;
-        public Color disabledColor;
-        [FormerlySerializedAs("transitionDuration")]
-        [Range(1f, 20f)] public float colorTransitionSpeed = 8f;
+        [FormerlySerializedAs("OnToggle")] [SerializeField] private UnityEvent onToggle;
 
         [FormerlySerializedAs("fillTransitionDuration"),
         Header("Filling"), Range(1f, 20f)] public float fillTransitionSpeed = 8f;
@@ -78,14 +71,11 @@ namespace DartCore.UI
         private Image fill;
 
         private RectTransform maskRect;
-        private Image backgroundImage;
-        private Color backgroundColor;
 
         private void Awake()
         {
             mask = transform.Find("Mask").GetComponent<Image>();
             maskRect = mask.GetComponent<RectTransform>();
-            backgroundImage = GetComponent<Image>();
 
             fill = mask.transform.Find("Fill").GetComponent<Image>();
             NormalState();
@@ -105,19 +95,13 @@ namespace DartCore.UI
             #endregion
 
             UpdateFill();
-            if (!isInteractive)
-                DisabledState();
-            if (isInteractive && !wasInteractive)
+            if (interactable && !wasInteractive)
                 NormalState();
 
             if (isOn)
-                fill.color = Color.Lerp(fill.color, fillColor,(animType == ToggleFillAnimation.Fade ?
-                    currentFillTransitionSpeed : colorTransitionSpeed) * Time.unscaledDeltaTime);
+                fill.color = Color.Lerp(fill.color, fillColor,currentFillTransitionSpeed * Time.unscaledDeltaTime);
  
-            wasInteractive = isInteractive;
-            if (backgroundImage)
-                backgroundImage.color = Color.Lerp(backgroundImage.color, backgroundColor,
-                    colorTransitionSpeed * Time.unscaledDeltaTime);
+            wasInteractive = interactable;
         }
 
         private void UpdateFill()
@@ -166,18 +150,17 @@ namespace DartCore.UI
 
         private void Click()
         {
-            if (!isInteractive) return;
+            if (!interactable) return;
             
             isOn = !isOn;
-            OnToggle.Invoke();
+            onToggle.Invoke();
             UIAudioManager.PlayOneShotAudio(pressedClip, volume, mixerGroup);
         }
 
         private void Highlight()
         {
-            if (!isInteractive) return;
+            if (!interactable) return;
 
-            backgroundColor = highlightedColor;
             if (toolTip.Length > 0)
                 Tooltip.ShowTooltipStatic(toolTip, tooltipTextColor, tooltipBgColor, localizeTooltip);
             UIAudioManager.PlayOneShotAudio(highlightedClip, volume, mixerGroup);
@@ -185,24 +168,36 @@ namespace DartCore.UI
 
         protected void NormalState()
         {
-            if (!isInteractive) return;
+            if (!interactable) return;
 
-            backgroundColor = normalColor;
             if (toolTip.Length > 0)
                 Tooltip.HideTooltipStatic();
         }
 
-        protected void DisabledState()
-        {
-            if (!isInteractive)
-                backgroundColor = disabledColor;
-        }
-
         #region Cursor Detection
 
-        public void OnPointerClick(PointerEventData eventData) => Click();
-        public void OnPointerEnter(PointerEventData eventData) => Highlight();
-        public void OnPointerExit(PointerEventData eventData) => NormalState();
+        public void OnSubmit(BaseEventData eventData)
+        {
+            Click();
+        }
+
+        public override void OnPointerDown(PointerEventData eventData)
+        {
+            base.OnPointerDown(eventData);
+            Click();
+        }
+
+        public override void OnPointerEnter(PointerEventData eventData)
+        {
+            base.OnPointerEnter(eventData);
+            Highlight();
+        }
+
+        public override void OnPointerExit(PointerEventData eventData)
+        {
+            base.OnPointerExit(eventData);
+            NormalState();
+        }
 
         #endregion
     }
