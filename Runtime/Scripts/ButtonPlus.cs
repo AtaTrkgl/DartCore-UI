@@ -44,13 +44,6 @@ namespace DartCore.UI
         public UnityEvent onLeftClick;
         public UnityEvent onRightClick;
         public UnityEvent onMiddleClick;
-        
-        [Header("Tooltip")] public string toolTip;
-        public Color tooltipTextColor = new Color(.2f, .2f, .2f);
-        public Color tooltipBgColor = new Color(.85f, .85f, .85f);
-
-        [Tooltip("toolTip will be used as a key if set to true")]
-        public bool localizeText = false;
 
         [Header("Audio")] public AudioClip highlightedClip;
         public AudioClip pressedClip;
@@ -68,20 +61,10 @@ namespace DartCore.UI
             }
         }
 
-        private void Exit()
-        {
-            if (!base.interactable) return;
-
-            if (toolTip.Length > 0)
-                Tooltip.HideTooltipStatic();
-        }
-
         private void Highlight()
         {
             if (!base.interactable) return;
 
-            if (toolTip.Length > 0)
-                Tooltip.ShowTooltipStatic(toolTip, tooltipTextColor, tooltipBgColor, localizeText);
             UIAudioManager.PlayOneShotAudio(highlightedClip, volume, mixerGroup);
         }
 
@@ -91,12 +74,6 @@ namespace DartCore.UI
         {
             base.OnPointerEnter(eventData);
             Highlight();
-        }
-
-        public override void OnPointerExit(PointerEventData eventData)
-        {
-            base.OnPointerExit(eventData);
-            Exit();
         }
 
         public override void OnPointerClick(PointerEventData eventData)

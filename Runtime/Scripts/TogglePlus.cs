@@ -54,14 +54,6 @@ namespace DartCore.UI
         public ToggleFillAnimation animType;
         [Range(0, 1)] public float fillScale = .8f;
 
-        [Header("Tooltip")] public string toolTip;
-
-        [Tooltip("toolTip will be used as a key if set to true")]
-        public bool localizeTooltip = false;
-
-        public Color tooltipTextColor = new Color(.2f, .2f, .2f);
-        public Color tooltipBgColor = new Color(.85f, .85f, .85f);
-
         [Header("Audio")] public AudioClip highlightedClip;
         public AudioClip pressedClip;
         public AudioMixerGroup mixerGroup;
@@ -78,7 +70,6 @@ namespace DartCore.UI
             maskRect = mask.GetComponent<RectTransform>();
 
             fill = mask.transform.Find("Fill").GetComponent<Image>();
-            NormalState();
         }
 
         private void Update()
@@ -95,8 +86,6 @@ namespace DartCore.UI
             #endregion
 
             UpdateFill();
-            if (interactable && !wasInteractive)
-                NormalState();
 
             if (isOn)
                 fill.color = Color.Lerp(fill.color, fillColor,currentFillTransitionSpeed * Time.unscaledDeltaTime);
@@ -161,17 +150,7 @@ namespace DartCore.UI
         {
             if (!interactable) return;
 
-            if (toolTip.Length > 0)
-                Tooltip.ShowTooltipStatic(toolTip, tooltipTextColor, tooltipBgColor, localizeTooltip);
             UIAudioManager.PlayOneShotAudio(highlightedClip, volume, mixerGroup);
-        }
-
-        protected void NormalState()
-        {
-            if (!interactable) return;
-
-            if (toolTip.Length > 0)
-                Tooltip.HideTooltipStatic();
         }
 
         #region Cursor Detection
@@ -191,12 +170,6 @@ namespace DartCore.UI
         {
             base.OnPointerEnter(eventData);
             Highlight();
-        }
-
-        public override void OnPointerExit(PointerEventData eventData)
-        {
-            base.OnPointerExit(eventData);
-            NormalState();
         }
 
         #endregion

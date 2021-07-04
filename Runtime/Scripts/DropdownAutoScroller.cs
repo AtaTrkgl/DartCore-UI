@@ -11,6 +11,11 @@ namespace DartCore.UI
     public class DropdownAutoScroller : MonoBehaviour
     {
         public bool isActive = true;
+
+        [Tooltip("It is recommended to set this to false when a controller is being used and setting to true when Keyboard and Mouse if being used.")]
+        public bool onlyWorkOnActivation = false;
+
+        private bool hasReachedTargetHeight = false;
         
         private EventSystem eventSystem;
         private GameObject lastSelection;
@@ -22,7 +27,7 @@ namespace DartCore.UI
 
         public bool useUnscaledTime = false;
         [Range(1f, 100f)] public float autoScrollSpeed = 10f;
-        private float desiredHeight = 0;
+        private float desiredHeight = 0f;
         
         private void Awake()
         {
@@ -38,13 +43,20 @@ namespace DartCore.UI
         {
             if (!isActive) return;
             
-            if (currentContent)
+            if (currentContent && (!onlyWorkOnActivation || !hasReachedTargetHeight))
             {
                 var currentHeight = Mathf.Lerp(currentContent.anchoredPosition.y, desiredHeight, 
                     autoScrollSpeed * (useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime));
                 
                 currentContent.anchoredPosition = new Vector2(currentContent.anchoredPosition.x,currentHeight);
+                
+                if (Mathf.Abs(currentHeight - desiredHeight) < .5f) hasReachedTargetHeight = true;
             }
+
+            if (lastSelection != gameObject && eventSystem.currentSelectedGameObject == gameObject)
+                hasReachedTargetHeight = false;
+            
+            if (hasReachedTargetHeight && onlyWorkOnActivation) return;
             
             if (lastSelection != eventSystem.currentSelectedGameObject) ScrollToSelectedIndex();
             
