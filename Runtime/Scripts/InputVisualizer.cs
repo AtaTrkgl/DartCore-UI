@@ -44,7 +44,14 @@ namespace DartCore.UI
         public bool autoPickController = false;
         public bool disableOnKeyboard = false;
         public ControllerType currentController = ControllerType.XBoxOne;
-        [Range(0, 3)] public int style = 0;
+        [Space]
+        
+        [Tooltip("This style will be used for the controllers Dualshock3 & Dualshock 4")]
+        public InputVisualizerStyle dualshockStyle;
+        
+        [Tooltip("This style will be used for the controllers other than Dualshock3 & Dualshock 4")]
+        public InputVisualizerStyle xboxStyle;
+        [Space]
         public ControllerKey key;
 
         private Image image;
@@ -70,24 +77,18 @@ namespace DartCore.UI
 
         private void UpdateImage()
         {
-            var folderName = "XBox"; // Default Folder
-            if (currentController == ControllerType.Dualshock3 || currentController == ControllerType.Dualshock4)
-                folderName = "PS";
-            else if (currentController == ControllerType.XBoxOne || currentController == ControllerType.XBox360)
-                folderName = "XBox";
-            else if (disableOnKeyboard && currentController == ControllerType.None)
+            if (disableOnKeyboard && currentController == ControllerType.None)
             {
                 image.enabled = false;
                 return;
             }
 
-            var path = "Input Icons/Controller Icons/" + folderName + "/" + key.ToString() + "_" + style;
-            if (Resources.Load(path))
-            {
-                var imageAsset = Resources.Load<Sprite>(path);
-                image.sprite = imageAsset;
-                image.enabled = true;
-            }
+            var styleToUse = InputUtilities.IsDualshock(currentController) ? dualshockStyle : xboxStyle;
+            
+            if (!styleToUse) return;
+            image.sprite = styleToUse.GetSpriteOfKey(key);
+            
+            image.enabled = true;
         }
 
         private void AutoPickController()

@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c647ad53584fcbc4798e8010a5438c2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0db41ed7c820ed94a8a52fab042f0f66, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -91,5 +91,6 @@ MonoBehaviour:
   autoPickController: 0
   disableOnKeyboard: 0
   currentController: 3
-  style: 3
+  dualshockStyle: {fileID: 11400000, guid: 3c6cfd987ffe3d047ab63ad52c293c49, type: 2}
+  xboxStyle: {fileID: 11400000, guid: d4150213cb54cbc4f99f645f1eb4a259, type: 2}
   key: 12

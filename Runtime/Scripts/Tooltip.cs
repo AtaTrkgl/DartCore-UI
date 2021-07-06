@@ -28,6 +28,9 @@ namespace DartCore.UI
         private RectTransform canvas;
 
         private RectTransform rect;
+
+        private Vector2 posOverride;
+        private bool followCursor = true;
         
         private void Awake()
         {
@@ -49,7 +52,14 @@ namespace DartCore.UI
         private void Update()
         {
             UpdateTextSize();
-            FollowCursor();
+            
+            if (!canvas)
+                canvas = transform.parent.GetComponent<RectTransform>();
+            
+            if (followCursor)
+                FollowCursor();
+            else
+                rect.position = posOverride;
         }
 
         public static void SetTooltipFont(TMP_FontAsset desiredFont)
@@ -66,6 +76,7 @@ namespace DartCore.UI
 
         private void ShowTooltip(string tooltipString, Color textColor, Color bgColor, bool localizeText = false, int maxLineLength = 0)
         {
+            followCursor = true;
             Tooltip.textColor = textColor;
             Tooltip.bgColor = bgColor;
             Tooltip.localizeText = localizeText;
@@ -74,8 +85,19 @@ namespace DartCore.UI
 
             instance.UpdateTooltip();
             UpdateTextSize();
-            FollowCursor();
             gameObject.SetActive(true);
+        }
+            
+        private void ShowTooltip(string tooltipString, Color textColor, Color bgColor, Vector2 positionOverride, bool localizeText = false, int maxLineLength = 0)
+        {
+            ShowTooltip(tooltipString, textColor, bgColor, localizeText, maxLineLength);
+            SetPositionOverride(positionOverride);
+        }
+
+        private void SetPositionOverride(Vector2 posOverride)
+        {
+            followCursor = false;
+            this.posOverride = posOverride;
         }
 
         private void UpdateTooltip()
@@ -99,9 +121,6 @@ namespace DartCore.UI
 
         private void FollowCursor()
         {
-            if (!canvas)
-                canvas = transform.parent.GetComponent<RectTransform>();
-
             var screenWidth = canvas.sizeDelta.x;
             var screenHeight = canvas.sizeDelta.y;
 
@@ -125,6 +144,12 @@ namespace DartCore.UI
             CheckInstance();
 
             instance.ShowTooltip(tooltipString, textColor, bgColor, localizeText, maxLineLength);
+        }
+        public static void ShowTooltipStatic(string tooltipString, Color textColor, Color bgColor, Vector2 positionOverride, bool localizeText = false, int maxLineLength = 0)
+        {
+            CheckInstance();
+
+            instance.ShowTooltip(tooltipString, textColor, bgColor, positionOverride, localizeText, maxLineLength);
         }
         public static void HideTooltipStatic()
         {
