@@ -21,19 +21,19 @@ namespace DartCore.UI
         public bool displayOnSelection = false;
         public RectTransform selectionDisplayPosition;
         
-        private void Display(Vector2 positionOverride)
+        public void Display(Vector2 positionOverride)
         {
             if (toolTip.Length > 0)
                 Tooltip.ShowTooltipStatic(toolTip, tooltipTextColor, tooltipBgColor,positionOverride, localizeToolTip, maxLineLength);
         }
         
-        private void Display()
+        public void Display()
         {
             if (toolTip.Length > 0)
                 Tooltip.ShowTooltipStatic(toolTip, tooltipTextColor, tooltipBgColor, localizeToolTip, maxLineLength);
         }
 
-        private void Hide()
+        public void Hide()
         {
             if (toolTip.Length > 0)
                 Tooltip.HideTooltipStatic();

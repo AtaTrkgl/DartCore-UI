@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1f341c1d56174499fe0e478fe52937, type: 3}
+  m_Name: Default Xbox Style 2
+  m_EditorClassIdentifier: 
+  rightTrigger: {fileID: 21300000, guid: 7e73f453a922ef54b9aaf147b19c2bd6, type: 3}
+  leftTrigger: {fileID: 21300000, guid: ca518e62963de1049b248ca87dd8ef9e, type: 3}
+  rightBumper: {fileID: 21300000, guid: 901ce493f2512b948b1b4414615829e0, type: 3}
+  leftBumper: {fileID: 21300000, guid: 59bfba3a1bd531d44afba5a70b6e80a4, type: 3}
+  leftStick: {fileID: 21300000, guid: 5f629847a97de6c429cc071be7fa0629, type: 3}
+  leftStickButton: {fileID: 21300000, guid: d2bc36263bab5b844926a032da6b8eb6, type: 3}
+  rightStick: {fileID: 21300000, guid: da5ef3cfcf9039146806106f899611ae, type: 3}
+  rightStickButton: {fileID: 21300000, guid: 6aea2105a955fb64699c7092bd865ee9, type: 3}
+  dpad: {fileID: 21300000, guid: d0a8776f26682e1468ccf8b9bed1dfe1, type: 3}
+  dpadTop: {fileID: 21300000, guid: b67f75eb624983646b90aa315c64492d, type: 3}
+  dpadBottom: {fileID: 21300000, guid: 2f0fde21e7f56bf459d903acbf0446e1, type: 3}
+  dpadRight: {fileID: 21300000, guid: f372f2e51e9647e43b87b89d923fd7be, type: 3}
+  dpadLeft: {fileID: 21300000, guid: a91013fcb7c34fa4fb529cb7edce1c7e, type: 3}
+  topButton: {fileID: 21300000, guid: 30a9f3172b95e5f4eafd09b5efe1019a, type: 3}
+  bottomButton: {fileID: 21300000, guid: c3c9d5fef56daf84091d03d28ecc8bd6, type: 3}
+  leftButton: {fileID: 21300000, guid: 1247693aca2c57f46b914e1384fbf4a7, type: 3}
+  rightButton: {fileID: 21300000, guid: 1d36e472a34d5da43b9b8dea5d32f212, type: 3}
