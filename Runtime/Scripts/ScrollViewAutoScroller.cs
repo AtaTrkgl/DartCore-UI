@@ -92,6 +92,12 @@ namespace DartCore.UI
         {
             for (var i = 0; i < children.Length; i++)
             {
+                if (children[i] == null)
+                {
+                    UpdateChildren();
+                    return;
+                }
+
                 if (EventSystem.current.currentSelectedGameObject != children[i].gameObject) continue;
                 
                 ScrollToIndex(i);
