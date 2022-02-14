@@ -45,7 +45,7 @@ namespace DartCore.UI
         public bool isOn = false;
         protected bool wasInteractive = true;
 
-        [FormerlySerializedAs("OnToggle")] [SerializeField] private UnityEvent onToggle;
+        [FormerlySerializedAs("OnToggle")] public UnityEvent onToggle;
 
         [FormerlySerializedAs("fillTransitionDuration"),
         Header("Filling"), Range(1f, 20f)] public float fillTransitionSpeed = 8f;
