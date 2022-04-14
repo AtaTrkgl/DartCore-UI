@@ -28,8 +28,14 @@ namespace  DartCore.UI
         #endregion
 
         public static VersionDisplayer instance;
+        
         private TMP_Text versionText;
         private RawImage bg;
+
+        [Header("Behaviour")]
+        [SerializeField] private bool dontDestroyOnLoad = true;
+        
+        [Header("Visuals")]
         [SerializeField] private Color bgColor = Color.red;
         [SerializeField] private string prefixKey;
     
@@ -37,15 +43,17 @@ namespace  DartCore.UI
         {
             if (instance)
                 Destroy(gameObject);
-            else
+            else if (dontDestroyOnLoad)
                 instance = this;
-            
+
             bg = transform.GetChild(0).GetChild(0).GetComponent<RawImage>();
             versionText = bg.GetComponentInChildren<TMP_Text>();
             
-            DontDestroyOnLoad(this);
             UpdateText();
             UpdateColor(bgColor);
+            
+            if (!dontDestroyOnLoad) return;
+            DontDestroyOnLoad(this);
         }
 
         private void OnEnable() => Localizator.OnLanguageChange += UpdateText;
