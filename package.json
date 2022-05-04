@@ -16,7 +16,7 @@
   "type": "tool",
   "dependencies": {
     "com.unity.textmeshpro": "3.0.4",
-    "com.dartcore.utilities": "git:https://github.com/AtaTrkgl/DartCore-Utilities.git",
-    "com.dartcore.localization": "git:https://github.com/AtaTrkgl/DartCore-Localization.git"
+    "com.dartcore.utilities": "1.0.5",
+    "com.dartcore.localization": "1.2.0"
   }
 }
