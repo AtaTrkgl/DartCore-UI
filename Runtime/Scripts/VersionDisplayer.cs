@@ -1,5 +1,4 @@
-﻿using System;
-using DartCore.Localization;
+﻿using DartCore.Localization;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -10,6 +9,7 @@ using UnityEditor;
 
 namespace  DartCore.UI
 {
+    [RequireComponent(typeof(CanvasGroup))]
     public class VersionDisplayer : MonoBehaviour
     {
         #region Unity Editor
@@ -34,11 +34,15 @@ namespace  DartCore.UI
 
         [Header("Behaviour")]
         [SerializeField] private bool dontDestroyOnLoad = true;
+        [SerializeField] private KeyCode toggleKey = KeyCode.None;
+        [SerializeField] private bool activeOnStart = true;
         
         [Header("Visuals")]
         [SerializeField] private Color bgColor = Color.red;
-        [SerializeField] private string prefixKey;
-    
+        [SerializeField, LocalizedKey] private string prefixKey;
+
+        private CanvasGroup canvasGroup;
+        
         private void Awake()
         {
             if (instance)
@@ -48,6 +52,9 @@ namespace  DartCore.UI
 
             bg = transform.GetChild(0).GetChild(0).GetComponent<RawImage>();
             versionText = bg.GetComponentInChildren<TMP_Text>();
+
+            canvasGroup = GetComponent<CanvasGroup>();
+            canvasGroup.alpha = activeOnStart ? 1f : 0f;
             
             UpdateText();
             UpdateColor(bgColor);
@@ -58,7 +65,13 @@ namespace  DartCore.UI
 
         private void OnEnable() => Localizator.OnLanguageChange += UpdateText;
         private void OnDisable() => Localizator.OnLanguageChange -= UpdateText;
-    
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(toggleKey))
+                canvasGroup.alpha = canvasGroup.alpha > 0f ? 0f : 1f;
+        }
+
         public void UpdateText()
         {
             versionText.text = Localizator.GetString(prefixKey, returnErrorString: false) + " " + Application.version;

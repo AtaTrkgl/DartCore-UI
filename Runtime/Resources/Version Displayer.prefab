@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2234425154330101103}
   m_Father: {fileID: 2234425154316552005}
@@ -100,6 +101,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2234425153380931035}
   m_Father: {fileID: 2234425154452314607}
@@ -146,6 +148,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2234425153380931035}
   m_RootOrder: 0
@@ -265,6 +268,7 @@ GameObject:
   - component: {fileID: 2234425154452314593}
   - component: {fileID: 2234425154452314592}
   - component: {fileID: 328573174576847140}
+  - component: {fileID: 1762703346760660902}
   m_Layer: 5
   m_Name: Version Displayer
   m_TagString: Untagged
@@ -282,6 +286,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2234425154316552005}
   m_Father: {fileID: 0}
@@ -365,5 +370,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e22a0370197224c9c05de4ca684303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  toggleKey: 0
   bgColor: {r: 1, g: 0, b: 0, a: 1}
   prefixKey: 
+--- !u!225 &1762703346760660902
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2234425154452314594}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
