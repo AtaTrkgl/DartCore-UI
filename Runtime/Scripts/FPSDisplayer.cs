@@ -13,7 +13,7 @@ namespace  DartCore.UI
         #region Unity Editor
 
 #if UNITY_EDITOR
-        [MenuItem("DartCore/UI/FPS Displayer"), MenuItem("GameObject/UI/DartCore/FPS Displayer")]
+        [MenuItem("DartCore/UI/FPS Displayer", priority=22), MenuItem("GameObject/UI/DartCore/FPS Displayer", priority=22)]
         public static void AddVersionDisplayer()
         {
             var objParent = Selection.activeGameObject != null ? Selection.activeGameObject.transform :

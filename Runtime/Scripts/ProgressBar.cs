@@ -15,7 +15,7 @@ namespace DartCore.UI
         #region Unity Editor
 
 #if UNITY_EDITOR
-        [MenuItem("DartCore/UI/Linear Progress Bar"), MenuItem("GameObject/UI/DartCore/Linear Progress Bar")]
+        [MenuItem("DartCore/UI/Linear Progress Bar", priority=0), MenuItem("GameObject/UI/DartCore/Linear Progress Bar", priority=0)]
         public static void AddLinearProgressBar()
         {
             if (Selection.activeGameObject == null && FindObjectOfType<Canvas>() == null)
@@ -37,7 +37,7 @@ namespace DartCore.UI
             obj.name = "New Linear Progress Bar";
         }
 
-        [MenuItem("DartCore/UI/Radial Progress Bar"), MenuItem("GameObject/UI/DartCore/Radial Progress Bar")]
+        [MenuItem("DartCore/UI/Radial Progress Bar", priority=0), MenuItem("GameObject/UI/DartCore/Radial Progress Bar", priority=0)]
         public static void AddRadialProgressBar()
         {
             if (Selection.activeGameObject == null && FindObjectOfType<Canvas>() == null)

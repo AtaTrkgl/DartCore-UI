@@ -17,7 +17,7 @@ namespace DartCore.UI
         #region Unity Editor
 
 #if UNITY_EDITOR
-        [MenuItem("DartCore/UI/Toggle Plus"), MenuItem("GameObject/UI/DartCore/Toggle Plus")]
+        [MenuItem("DartCore/UI/Toggle Plus", priority=11), MenuItem("GameObject/UI/DartCore/Toggle Plus", priority=11)]
         public static void AddTogglePlus()
         {
             if (Selection.activeGameObject == null && FindObjectOfType<Canvas>() == null)

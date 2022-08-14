@@ -15,7 +15,7 @@ namespace  DartCore.UI
         #region Unity Editor
 
 #if UNITY_EDITOR
-        [MenuItem("DartCore/UI/Version Displayer"), MenuItem("GameObject/UI/DartCore/Version Displayer")]
+        [MenuItem("DartCore/UI/Version Displayer", priority=22), MenuItem("GameObject/UI/DartCore/Version Displayer", priority=22)]
         public static void AddVersionDisplayer()
         {
             var obj = Instantiate(Resources.Load<GameObject>("Version Displayer"),

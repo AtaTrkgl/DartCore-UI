@@ -16,7 +16,7 @@ namespace DartCore.UI
         #region Unity Editor
 
 #if UNITY_EDITOR
-        [MenuItem("DartCore/UI/ButtonPlus"), MenuItem("GameObject/UI/DartCore/ButtonPlus")]
+        [MenuItem("DartCore/UI/ButtonPlus", priority=11), MenuItem("GameObject/UI/DartCore/ButtonPlus", priority=11)]
         public static void AddButtonPlus()
         {
             if (Selection.activeGameObject == null && FindObjectOfType<Canvas>() == null)
