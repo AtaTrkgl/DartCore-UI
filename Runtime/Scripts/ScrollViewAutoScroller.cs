@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,6 +11,10 @@ namespace DartCore.UI
         [Header("Config")]
         public bool isActive = true;
         public bool updateVerticalNavOnEnable = false;
+        public bool loopableNavigation = true;
+        [Tooltip("Making this true will search for Selectable components using FindComponentInChildren, meaning if an" +
+                 "element in the ScrollView has a child that can be selected, it will be added to the list too.")]
+        public bool useDepthBasedSearchForSelectables = false;
         
         private bool hasReachedTargetHeight = false;
         
@@ -48,12 +49,13 @@ namespace DartCore.UI
         private void Update()
         {
             if (!isActive) return;
+            var dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 
             // Update the desired height so if the size gets changed the height can adjust.
             SetDesiredHeight(desiredHeight);
             
             content.anchoredPosition = new Vector2(content.anchoredPosition.x,
-                Mathf.Lerp(content.anchoredPosition.y, desiredHeight, autoScrollSpeed * Time.deltaTime));
+                Mathf.Lerp(content.anchoredPosition.y, desiredHeight, autoScrollSpeed * dt));
             
             if (lastSelection != eventSystem.currentSelectedGameObject)
                 TryScrollToSelectedIndex();
@@ -66,7 +68,10 @@ namespace DartCore.UI
             var selectables = new List<Selectable>();
             foreach (Transform child in transform.GetChild(0).GetChild(0))
             {
-                var selectable = child.GetComponent<Selectable>();
+                var selectable = useDepthBasedSearchForSelectables ?
+                    child.GetComponentInChildren<Selectable>() :
+                    child.GetComponent<Selectable>();
+                
                 if (selectable)
                     selectables.Add(selectable);
             }
@@ -81,8 +86,13 @@ namespace DartCore.UI
                 var nav = children[i].navigation;
                 nav.mode = Navigation.Mode.Explicit;
 
-                nav.selectOnDown = children[i + 1 == children.Length ? 0 : i + 1];
-                nav.selectOnUp = children[i - 1 == -1 ? children.Length - 1 : i - 1];
+                var selectOnDown = i + 1 == children.Length ? 0 : i + 1;
+                if (loopableNavigation || selectOnDown != 0)
+                    nav.selectOnDown = children[selectOnDown];
+                
+                var selectOnUp = i -1 == -1 ? children.Length - 1 : i - 1;
+                if (loopableNavigation || selectOnUp != children.Length - 1)
+                    nav.selectOnUp = children[selectOnUp];
 
                 children[i].navigation = nav;
             }
@@ -92,7 +102,7 @@ namespace DartCore.UI
         {
             for (var i = 0; i < children.Length; i++)
             {
-                if (children[i] == null)
+                if (!children[i])
                 {
                     UpdateChildren();
                     return;
@@ -107,7 +117,21 @@ namespace DartCore.UI
 
         private void ScrollToIndex(int index)
         {
-            var selectedRect = children[index].GetComponent<RectTransform>();
+            var selectedTransform = children[index].transform;
+            
+            while (selectedTransform.parent.parent.parent != transform)
+            {
+                selectedTransform = selectedTransform.parent;
+                if (!selectedTransform.parent.parent.parent)
+                {
+#if UNITY_EDITOR
+                    Debug.LogError($"Could not find the relation of {children[index].transform.name} to the scroll view.");
+#endif
+                    return;
+                }
+            }
+            
+            var selectedRect = selectedTransform.GetComponent<RectTransform>();
             SetDesiredHeight(-selectedRect.anchoredPosition.y - selectedRect.sizeDelta.y * .5f - offset);
         }
 
@@ -121,4 +145,3 @@ namespace DartCore.UI
         }
     }
 }
-

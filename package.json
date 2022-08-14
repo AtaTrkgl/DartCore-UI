@@ -1,22 +1,22 @@
 {
-  "name": "com.dartcore.ui",
-  "version": "1.1.3",
-  "displayName": "DartCore UI",
-  "description": "This package contains various UI tools ranging from a tooltip\nsystem to toggles. DartCore Localization is also fully integrated\nto the assets provided.",
-  "unity": "2018.1",
-  "unityRelease": "0b5",
-  "keywords": [
-    "UI"
-  ],
-  "author": {
-    "name": "Ata T\u00fcrko\u011flu",
-    "email": "ataturkoglu2003@hotmail.com",
-    "url": "https://github.com/AtaTrkgl/Unity-DartCore"
-  },
-  "type": "tool",
-  "dependencies": {
-    "com.unity.textmeshpro": "3.0.4",
-    "com.dartcore.utilities": "1.0.5",
-    "com.dartcore.localization": "1.2.0"
-  }
+    "name": "com.dartcore.ui",
+    "version": "1.2.0",
+    "displayName": "DartCore UI",
+    "description": "This package contains various UI tools ranging from a tooltip\nsystem to toggles. DartCore Localization is also fully integrated\nto the assets provided.",
+    "unity": "2018.1",
+    "unityRelease": "0b5",
+    "keywords": [
+        "UI"
+    ],
+    "author": {
+        "name": "Ata Türkoğlu",
+        "email": "ataturkoglu2003@hotmail.com",
+        "url": "https://github.com/AtaTrkgl/Unity-DartCore"
+    },
+    "type": "tool",
+    "dependencies": {
+        "com.unity.textmeshpro": "3.0.4",
+        "com.dartcore.utilities": "1.0.5",
+        "com.dartcore.localization": "1.2.0"
+    }
 }
