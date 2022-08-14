@@ -15,27 +15,24 @@ namespace DartCore.UI
         [Tooltip("Making this true will search for Selectable components using FindComponentInChildren, meaning if an" +
                  "element in the ScrollView has a child that can be selected, it will be added to the list too.")]
         public bool useDepthBasedSearchForSelectables = false;
-        
-        private bool hasReachedTargetHeight = false;
-        
-        private EventSystem eventSystem;
-        private GameObject lastSelection;
-        private RectTransform content;
-        private RectTransform rectTransform;
 
         [Header("Settings")]
         public bool useUnscaledTime = false;
         public float offset = 0f;
         [Range(1f, 100f)] public float autoScrollSpeed = 10f;
 
-        private float desiredHeight = 0f;
+        private float desiredPosition = 0f;
         private Selectable[] children;
+        private EventSystem eventSystem;
+        private GameObject lastSelection;
+        private ScrollRect scrollView;
+        private RectTransform rectTransform;
         
         private void Awake()
         {
             eventSystem = EventSystem.current;
+            scrollView = GetComponent<ScrollRect>();
             rectTransform = GetComponent<RectTransform>();
-            content = transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
         }
 
         private void OnEnable()
@@ -49,18 +46,30 @@ namespace DartCore.UI
         private void Update()
         {
             if (!isActive) return;
-            var dt = useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
-
-            // Update the desired height so if the size gets changed the height can adjust.
-            SetDesiredHeight(desiredHeight);
             
-            content.anchoredPosition = new Vector2(content.anchoredPosition.x,
-                Mathf.Lerp(content.anchoredPosition.y, desiredHeight, autoScrollSpeed * dt));
+            StepScrollPosition(useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime);
             
             if (lastSelection != eventSystem.currentSelectedGameObject)
                 TryScrollToSelectedIndex();
             
             lastSelection = eventSystem.currentSelectedGameObject;
+        }
+
+        public void StepScrollPosition(float dt, float speed)
+            => scrollView.content.anchoredPosition = Vector2.up * GetScrollPosition(speed * dt);
+        
+        public void StepScrollPosition(float dt) => StepScrollPosition(dt, autoScrollSpeed);
+
+        private float GetScrollPosition(float speed)
+        {
+            if (Mathf.Abs(scrollView.content.anchoredPosition.y - desiredPosition) < 1f)
+                return desiredPosition;
+            
+            return Mathf.Lerp(
+                scrollView.content.anchoredPosition.y,
+                desiredPosition,
+                speed
+            );
         }
         
         public void UpdateChildren()
@@ -115,7 +124,7 @@ namespace DartCore.UI
             }
         }
 
-        private void ScrollToIndex(int index)
+        public void ScrollToIndex(int index)
         {
             var selectedTransform = children[index].transform;
             
@@ -130,18 +139,18 @@ namespace DartCore.UI
                     return;
                 }
             }
-            
+
             var selectedRect = selectedTransform.GetComponent<RectTransform>();
-            SetDesiredHeight(-selectedRect.anchoredPosition.y - selectedRect.sizeDelta.y * .5f - offset);
+            SetDesiredHeight(Mathf.Abs(selectedRect.localPosition.y) - selectedRect.sizeDelta.y * (1f - selectedRect.pivot.y));
         }
 
         private void SetDesiredHeight(float height)
         {
-            var sizeGap = content.sizeDelta.y - rectTransform.sizeDelta.y;
+            var sizeGap = scrollView.content.sizeDelta.y - rectTransform.sizeDelta.y;
             if (sizeGap <= 0) 
-                desiredHeight = 0f;
+                desiredPosition = 0f;
             else 
-                desiredHeight = Mathf.Clamp(height, 0, sizeGap);
+                desiredPosition = Mathf.Clamp(height, 0, sizeGap);
         }
     }
 }
