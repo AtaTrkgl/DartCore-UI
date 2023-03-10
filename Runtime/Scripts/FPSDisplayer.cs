@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -29,6 +30,8 @@ namespace  DartCore.UI
 
         public static FPSDisplayer instance;
         private static float avg = 0;
+        private static float sceneAvg = 0;
+        private static int sceneFrameCount = 0;
 
         [SerializeField] private bool toggled = true;
         [SerializeField] private KeyCode toggleKey = KeyCode.F6;
@@ -47,6 +50,8 @@ namespace  DartCore.UI
             
             DontDestroyOnLoad(this);
             UpdateColor(textColor);
+
+            SceneManager.activeSceneChanged += (_, __) => { sceneAvg = 0; sceneFrameCount = 0; };
         }
 
         private void Update()
@@ -58,14 +63,19 @@ namespace  DartCore.UI
             var currentFPS = 1 / Time.unscaledDeltaTime;
             var roundedFPS = Mathf.RoundToInt(currentFPS);
             
+            sceneFrameCount++;
+            
             avg = (avg * (Time.frameCount - 1) + currentFPS) / Time.frameCount;
+            sceneAvg = (sceneAvg * (sceneFrameCount - 1) + currentFPS) / sceneFrameCount;
             
             if (!toggled)
             {
                 fpsText.text = "";
                 return;
             }
-            fpsText.text = $"FPS: {(roundedFPS < 100 ? roundedFPS + " " : roundedFPS.ToString())}" + $" Avg: {Mathf.RoundToInt(avg)}";
+            fpsText.text = $"FPS: {(roundedFPS < 100 ? roundedFPS + " " : roundedFPS.ToString())}"
+                           + $" Avg: {Mathf.RoundToInt(avg)}"
+                           + $" Scene Avg: {Mathf.RoundToInt(sceneAvg)}";
         }
 
         public void UpdateColor(Color color)
