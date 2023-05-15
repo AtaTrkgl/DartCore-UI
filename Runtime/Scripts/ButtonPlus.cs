@@ -45,10 +45,12 @@ namespace DartCore.UI
         public UnityEvent onRightClick;
         public UnityEvent onMiddleClick;
 
-        [Header("Audio")] public AudioClip highlightedClip;
+        [Header("Audio")]
+        public AudioClip highlightedClip;
         public AudioClip pressedClip;
         public AudioMixerGroup mixerGroup;
         [Range(0, 1)] public float volume = .2f;
+        public bool playHighlightEffectsOnSelection = true;
         public bool playClipOnRightClick = true;
         public bool playClipOnLeftClick = true;
         public bool playClipOnMiddleClick = true;
@@ -66,6 +68,12 @@ namespace DartCore.UI
             if (!base.interactable) return;
 
             UIAudioManager.PlayOneShotAudio(highlightedClip, volume, mixerGroup);
+        }
+
+        public override void OnSelect(BaseEventData eventData)
+        {
+            base.OnSelect(eventData);
+            if (playHighlightEffectsOnSelection) Highlight();
         }
 
         #region Cursor Detection

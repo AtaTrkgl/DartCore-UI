@@ -20,6 +20,7 @@ namespace DartCore.UI
             EditorGUILayout.PropertyField(serializedObject.FindProperty("volume"), new GUIContent("Volume"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("mixerGroup"), new GUIContent("Audio Mixer Group"));
             
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("playHighlightEffectsOnSelection"), new GUIContent("Apply Highlight Effects to Selection"));
             
             EditorGUILayout.PropertyField(serializedObject.FindProperty("playClipOnLeftClick"), new GUIContent("Play Clip on LMB"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("playClipOnRightClick"), new GUIContent("Play Clip on RMB"));
