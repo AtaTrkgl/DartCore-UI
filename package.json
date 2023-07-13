@@ -1,6 +1,6 @@
 {
     "name": "com.dartcore.ui",
-    "version": "1.2.4",
+    "version": "1.2.5",
     "displayName": "DartCore UI",
     "description": "This package contains various UI tools ranging from a tooltip\nsystem to toggles. DartCore Localization is also fully integrated\nto the assets provided.",
     "unity": "2018.1",

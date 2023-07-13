@@ -23,14 +23,12 @@ namespace DartCore.UI
 
         private float desiredPosition = 0f;
         private Selectable[] children;
-        private EventSystem eventSystem;
         private GameObject lastSelection;
         private ScrollRect scrollView;
         private RectTransform rectTransform;
         
         private void Awake()
         {
-            eventSystem = EventSystem.current;
             scrollView = GetComponent<ScrollRect>();
             rectTransform = GetComponent<RectTransform>();
         }
@@ -49,10 +47,10 @@ namespace DartCore.UI
             
             StepScrollPosition(useUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime);
             
-            if (lastSelection != eventSystem.currentSelectedGameObject)
+            if (lastSelection != EventSystem.current.currentSelectedGameObject)
                 TryScrollToSelectedIndex();
             
-            lastSelection = eventSystem.currentSelectedGameObject;
+            lastSelection = EventSystem.current.currentSelectedGameObject;
         }
 
         public void StepScrollPosition(float dt, float speed)
