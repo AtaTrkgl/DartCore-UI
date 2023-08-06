@@ -14,16 +14,14 @@ namespace DartCore.UI
     public class InputVisualizer : MonoBehaviour
     {
         #region Unity Editor
-
 #if UNITY_EDITOR
         [MenuItem("DartCore/UI/Input Visualizer", priority=22), MenuItem("GameObject/UI/DartCore/Input Visualizer", priority=22)]
-        public static void AddButtonPlus()
+        public static void AddInputVisualizer()
         {
             if (Selection.activeGameObject == null && FindObjectOfType<Canvas>() == null)
             {
-                var canvas = new GameObject();
-                canvas.name = "New Canvas";
-                
+                var canvas = new GameObject { name = "New Canvas" };
+
                 var canvasComp = canvas.AddComponent<Canvas>();
                 canvasComp.renderMode = RenderMode.ScreenSpaceOverlay;
 
@@ -38,21 +36,19 @@ namespace DartCore.UI
             obj.name = "New Input Visualizer";
         }
 #endif
-
         #endregion
 
-        public bool autoPickController = false;
-        public bool disableOnKeyboard = false;
-        public ControllerType currentController = ControllerType.XBoxOne;
-        [Space]
+        [Header("Behaviours")]
+        public bool autoPickGamepad;
+        public GamepadPlatform currentGamepadPlatform = GamepadPlatform.Xbox;
         
-        [Tooltip("This style will be used for the controllers Dualshock3 & Dualshock 4")]
-        public InputVisualizerStyle dualshockStyle;
-        
-        [Tooltip("This style will be used for the controllers other than Dualshock3 & Dualshock 4")]
+        [Header("Styles")]
+        public InputVisualizerStyle playstationStyle;
         public InputVisualizerStyle xboxStyle;
+        public InputVisualizerStyle nintendoStyle;
+        public Sprite keyboardSprite;
         [Space]
-        public ControllerKey key;
+        public GamepadKey key;
 
         private Image image;
 
@@ -63,37 +59,32 @@ namespace DartCore.UI
 
         private void Update()
         {
-            if (autoPickController)
-                AutoPickController();
-
-            UpdateImage();
+            if (autoPickGamepad)
+                AutoPickGamepad();
         }
 
-        public void UpdateController(ControllerType desiredController)
+        public void UpdateGamepad(GamepadPlatform desiredPlatform)
         {
-            currentController = desiredController;
+            if (currentGamepadPlatform == desiredPlatform) return;
+            
+            currentGamepadPlatform = desiredPlatform;
             UpdateImage();
         }
 
         private void UpdateImage()
         {
-            if (disableOnKeyboard && currentController == ControllerType.None)
+            var platform = InputUtilities.GetGamepadPlatform();
+            var styleToUse = platform switch
             {
-                image.enabled = false;
-                return;
-            }
-
-            var styleToUse = InputUtilities.IsDualshock(currentController) ? dualshockStyle : xboxStyle;
+                GamepadPlatform.Playstation => playstationStyle,
+                GamepadPlatform.Nintendo => nintendoStyle,
+                GamepadPlatform.Xbox => xboxStyle,
+                _ => null
+            };
             
-            if (!styleToUse) return;
-            image.sprite = styleToUse.GetSpriteOfKey(key);
-            
-            image.enabled = true;
+            image.sprite = styleToUse ? styleToUse.GetSpriteOfKey(key) : keyboardSprite;
         }
 
-        private void AutoPickController()
-        {
-            currentController = InputUtilities.GetMainController();
-        }
+        private void AutoPickGamepad() => UpdateGamepad(InputUtilities.GetGamepadPlatform());
     }
 }

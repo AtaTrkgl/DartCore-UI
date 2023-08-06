@@ -32,43 +32,43 @@ public class InputVisualizerStyle : ScriptableObject
     public Sprite leftButton;
     public Sprite rightButton;
 
-    public Sprite GetSpriteOfKey(ControllerKey key)
+    public Sprite GetSpriteOfKey(GamepadKey key)
     {
         switch (key)
         {
-            case ControllerKey.RightTrigger:
+            case GamepadKey.RightTrigger:
                 return rightTrigger;
-            case ControllerKey.LeftTrigger:
+            case GamepadKey.LeftTrigger:
                 return leftTrigger;
-            case ControllerKey.RightBumper:
+            case GamepadKey.RightBumper:
                 return rightBumper;
-            case ControllerKey.LeftBumper:
+            case GamepadKey.LeftBumper:
                 return leftBumper;
-            case ControllerKey.LeftStick:
+            case GamepadKey.LeftStick:
                 return leftStick;
-            case ControllerKey.LeftStickButton:
+            case GamepadKey.LeftStickButton:
                 return leftStickButton;
-            case ControllerKey.RightStick:
+            case GamepadKey.RightStick:
                 return rightStick;
-            case ControllerKey.RightStickButton:
+            case GamepadKey.RightStickButton:
                 return rightStickButton;
-            case ControllerKey.Dpad:
+            case GamepadKey.Dpad:
                 return dpad;
-            case ControllerKey.DpadTop:
+            case GamepadKey.DpadTop:
                 return dpadTop;
-            case ControllerKey.DpadBottom:
+            case GamepadKey.DpadBottom:
                 return dpadBottom;
-            case ControllerKey.DpadRight:
+            case GamepadKey.DpadRight:
                 return dpadRight;
-            case ControllerKey.DpadLeft:
+            case GamepadKey.DpadLeft:
                 return dpadLeft;
-            case ControllerKey.TopButton:
+            case GamepadKey.TopButton:
                 return topButton;
-            case ControllerKey.BottomButton:
+            case GamepadKey.BottomButton:
                 return bottomButton;
-            case ControllerKey.LeftButton:
+            case GamepadKey.LeftButton:
                 return leftButton;
-            case ControllerKey.RightButton:
+            case GamepadKey.RightButton:
                 return rightButton;
             default:
                 throw new ArgumentOutOfRangeException(nameof(key), key, null);
