@@ -57,6 +57,11 @@ namespace DartCore.UI
             image = GetComponent<Image>();
         }
 
+        private void Start()
+        {
+            UpdateImage();
+        }
+
         private void Update()
         {
             if (autoPickGamepad)
